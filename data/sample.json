@@ -1,0 +1,9 @@
+{
+  "event_id": "sample-002",
+  "event_type": "CRAFT_REGISTERED",
+  "aggregate_type": "craft_revision",
+  "aggregate_id": "aggregate-002",
+  "occurred_at": "2026-09-20T12:00:00+08:00",
+  "version": 1,
+  "summary": "非遗师承能力履历领域样例"
+}
