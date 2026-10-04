@@ -1,0 +1,38 @@
+{
+  "apprentice_id": "apprentice-zhao",
+  "role_id": "role-chengnan-helper",
+  "role_cancelled": true,
+  "ready_for_independent_work": true,
+  "items": [
+    {
+      "craft_revision_id": "craft-shaomai-v1",
+      "node_id": "node-wrapper-24",
+      "satisfied": true,
+      "blockers": [],
+      "supporting_evidence": [
+        {
+          "evidence_id": "evidence-zhao-obs",
+          "kind": "on_site_observation",
+          "title": "现场观察·二十四道褶",
+          "craft_revision_id": "craft-shaomai-v1",
+          "observer_ids": [
+            "master-zhou"
+          ],
+          "course_id": null,
+          "innovation_adoption": null,
+          "produced_at": "2026-06-12T16:00:00+08:00",
+          "matches_required_revision": true
+        }
+      ],
+      "latest_judgment": {
+        "conclusion": "competent",
+        "via": "阶段评议",
+        "review_id": "review-zhao-final",
+        "prior_review_id": null,
+        "stage": "结业"
+      },
+      "certificate_backed": true
+    }
+  ],
+  "note": "出勤记录仅证明到场，不参与本分析；未被采用的创意仅在授权用途内可见。"
+}

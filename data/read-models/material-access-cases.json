@@ -1,0 +1,78 @@
+[
+  {
+    "case": "企业录用核验：林晓的练习作品影像，有 employment_verification 授权",
+    "request": {
+      "subject_id": "apprentice-lin",
+      "material": {
+        "category": "personal_image",
+        "ref": "evidence-lin-practice-work#photo"
+      },
+      "purpose": "employment_verification",
+      "scope": "same_studio",
+      "at": "2026-08-01T09:00:00+08:00"
+    },
+    "decision": {
+      "allowed": true,
+      "reasons": [
+        "授权有效"
+      ]
+    }
+  },
+  {
+    "case": "跨工作室展示：同一张作品影像，已取 cross_studio 必要材料授权",
+    "request": {
+      "subject_id": "apprentice-lin",
+      "material": {
+        "category": "personal_image",
+        "ref": "evidence-lin-practice-work#photo"
+      },
+      "purpose": "cross_studio_display",
+      "scope": "cross_studio",
+      "at": "2026-08-10T09:00:00+08:00"
+    },
+    "decision": {
+      "allowed": true,
+      "reasons": [
+        "授权有效"
+      ]
+    }
+  },
+  {
+    "case": "跨工作室展示：未被采用的压褶器创意，无跨工作室授权，应拒绝",
+    "request": {
+      "subject_id": "apprentice-lin",
+      "material": {
+        "category": "unused_innovation",
+        "ref": "evidence-lin-innovation#draft"
+      },
+      "purpose": "cross_studio_display",
+      "scope": "cross_studio",
+      "at": "2026-08-10T09:00:00+08:00"
+    },
+    "decision": {
+      "allowed": false,
+      "reasons": [
+        "敏感材料缺少覆盖该用途/时限的有效授权"
+      ]
+    }
+  },
+  {
+    "case": "授权到期后展示：一年期已过，应拒绝",
+    "request": {
+      "subject_id": "apprentice-lin",
+      "material": {
+        "category": "personal_image",
+        "ref": "evidence-lin-practice-work#photo"
+      },
+      "purpose": "cross_studio_display",
+      "scope": "cross_studio",
+      "at": "2027-09-01T09:00:00+08:00"
+    },
+    "decision": {
+      "allowed": false,
+      "reasons": [
+        "敏感材料缺少覆盖该用途/时限的有效授权"
+      ]
+    }
+  }
+]

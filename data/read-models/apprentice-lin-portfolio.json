@@ -1,0 +1,98 @@
+{
+  "apprentice_id": "apprentice-lin",
+  "nodes": {
+    "node-dough": {
+      "name": "和面醒面",
+      "critical": false,
+      "requires_on_site_observation": false,
+      "evidence": [
+        {
+          "evidence_id": "evidence-lin-coursework-dough",
+          "kind": "coursework",
+          "title": "课程成果·醒面面团考核",
+          "craft_revision_id": "craft-shaomai-v2",
+          "observer_ids": [],
+          "course_id": "course-pastry-basic-v2",
+          "innovation_adoption": null,
+          "produced_at": "2026-04-10T15:00:00+08:00"
+        }
+      ],
+      "latest_judgment": {
+        "conclusion": "competent",
+        "via": "阶段评议",
+        "review_id": "review-lin-stage2",
+        "prior_review_id": null,
+        "stage": "结业"
+      }
+    },
+    "node-wrapper-24": {
+      "name": "擀皮包制·二十四道褶",
+      "critical": true,
+      "requires_on_site_observation": true,
+      "evidence": [
+        {
+          "evidence_id": "evidence-lin-oral-knack",
+          "kind": "oral_knack",
+          "title": "口授诀窍·提捏发力节奏",
+          "craft_revision_id": "craft-shaomai-v1",
+          "observer_ids": [],
+          "course_id": null,
+          "innovation_adoption": null,
+          "produced_at": "2026-03-20T16:00:00+08:00"
+        },
+        {
+          "evidence_id": "evidence-lin-observation-wrapper",
+          "kind": "on_site_observation",
+          "title": "现场观察·二十四道封口褶",
+          "craft_revision_id": "craft-shaomai-v2",
+          "observer_ids": [
+            "master-chen"
+          ],
+          "course_id": null,
+          "innovation_adoption": null,
+          "produced_at": "2026-04-20T16:30:00+08:00"
+        },
+        {
+          "evidence_id": "evidence-lin-practice-work",
+          "kind": "practice_work",
+          "title": "练习作品·二十四褶烧麦一笼",
+          "craft_revision_id": "craft-shaomai-v2",
+          "observer_ids": [],
+          "course_id": null,
+          "innovation_adoption": null,
+          "produced_at": "2026-06-03T16:00:00+08:00"
+        },
+        {
+          "evidence_id": "evidence-lin-innovation",
+          "kind": "innovation",
+          "title": "个人改良·木柄压褶器",
+          "craft_revision_id": "craft-shaomai-v2",
+          "observer_ids": [],
+          "course_id": null,
+          "innovation_adoption": "not_adopted",
+          "produced_at": "2026-07-20T16:00:00+08:00"
+        }
+      ],
+      "latest_judgment": {
+        "conclusion": "competent",
+        "via": "后继复核意见",
+        "review_id": "review-lin-stage2-r1",
+        "prior_review_id": "review-lin-stage2",
+        "stage": "结业复核"
+      }
+    }
+  },
+  "certificates": [
+    {
+      "certificate_id": "certificate-lin-001",
+      "title": "烧麦制作技艺能力证书",
+      "issued_at": "2026-06-15T09:00:00+08:00",
+      "valid": true,
+      "revoked_reason": null,
+      "review_ids": [
+        "review-lin-stage2"
+      ]
+    }
+  ],
+  "open_practices": []
+}

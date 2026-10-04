@@ -5,5 +5,12 @@
   "aggregate_id": "aggregate-002",
   "occurred_at": "2026-09-20T12:00:00+08:00",
   "version": 1,
-  "summary": "非遗师承能力履历领域样例"
+  "summary": "非遗师承能力履历领域样例",
+  "payload": {
+    "studio_id": "studio-sample",
+    "craft_name": "样例技艺",
+    "craft_nodes": [
+      { "node_id": "node-sample", "name": "样例工序" }
+    ]
+  }
 }

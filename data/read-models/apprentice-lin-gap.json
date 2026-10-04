@@ -1,0 +1,87 @@
+{
+  "apprentice_id": "apprentice-lin",
+  "role_id": "role-shaomai-chef",
+  "role_cancelled": false,
+  "ready_for_independent_work": true,
+  "items": [
+    {
+      "craft_revision_id": "craft-shaomai-v2",
+      "node_id": "node-dough",
+      "satisfied": true,
+      "blockers": [],
+      "supporting_evidence": [
+        {
+          "evidence_id": "evidence-lin-coursework-dough",
+          "kind": "coursework",
+          "title": "课程成果·醒面面团考核",
+          "craft_revision_id": "craft-shaomai-v2",
+          "observer_ids": [],
+          "course_id": "course-pastry-basic-v2",
+          "innovation_adoption": null,
+          "produced_at": "2026-04-10T15:00:00+08:00",
+          "matches_required_revision": true
+        }
+      ],
+      "latest_judgment": {
+        "conclusion": "competent",
+        "via": "阶段评议",
+        "review_id": "review-lin-stage2",
+        "prior_review_id": null,
+        "stage": "结业"
+      },
+      "certificate_backed": true
+    },
+    {
+      "craft_revision_id": "craft-shaomai-v2",
+      "node_id": "node-wrapper-24",
+      "satisfied": true,
+      "blockers": [],
+      "supporting_evidence": [
+        {
+          "evidence_id": "evidence-lin-oral-knack",
+          "kind": "oral_knack",
+          "title": "口授诀窍·提捏发力节奏",
+          "craft_revision_id": "craft-shaomai-v1",
+          "observer_ids": [],
+          "course_id": null,
+          "innovation_adoption": null,
+          "produced_at": "2026-03-20T16:00:00+08:00",
+          "matches_required_revision": false
+        },
+        {
+          "evidence_id": "evidence-lin-observation-wrapper",
+          "kind": "on_site_observation",
+          "title": "现场观察·二十四道封口褶",
+          "craft_revision_id": "craft-shaomai-v2",
+          "observer_ids": [
+            "master-chen"
+          ],
+          "course_id": null,
+          "innovation_adoption": null,
+          "produced_at": "2026-04-20T16:30:00+08:00",
+          "matches_required_revision": true
+        },
+        {
+          "evidence_id": "evidence-lin-practice-work",
+          "kind": "practice_work",
+          "title": "练习作品·二十四褶烧麦一笼",
+          "craft_revision_id": "craft-shaomai-v2",
+          "observer_ids": [],
+          "course_id": null,
+          "innovation_adoption": null,
+          "produced_at": "2026-06-03T16:00:00+08:00",
+          "matches_required_revision": true
+        }
+      ],
+      "latest_judgment": {
+        "conclusion": "competent",
+        "via": "后继复核意见",
+        "review_id": "review-lin-stage2-r1",
+        "prior_review_id": "review-lin-stage2",
+        "stage": "结业复核"
+      },
+      "certificate_backed": true
+    }
+  ],
+  "note": "出勤记录仅证明到场，不参与本分析；未被采用的创意仅在授权用途内可见。"
+}

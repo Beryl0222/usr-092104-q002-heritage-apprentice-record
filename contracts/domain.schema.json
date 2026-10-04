@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "非遗师承能力履历领域事件",
+  "description": "事件信封字段保持稳定：事件标识（event_type）与流内版本（version）是接入边界，只允许追加新事件类型，不得改名或复用。各事件的业务字段统一放在 payload。",
   "type": "object",
   "required": [
     "event_id",
@@ -23,15 +24,38 @@
         "EVIDENCE_SUBMITTED",
         "REVIEW_SIGNED",
         "CERTIFICATE_ISSUED",
-        "PLACEMENT_TRANSFERRED"
+        "PLACEMENT_TRANSFERRED",
+        "CRAFT_REVISED",
+        "COURSE_REGISTERED",
+        "COURSE_REVISED",
+        "JOB_ROLE_DEFINED",
+        "JOB_ROLE_CANCELLED",
+        "MENTORSHIP_ASSIGNED",
+        "MENTOR_WITHDRAWN",
+        "ATTENDANCE_LOGGED",
+        "REVIEW_RECONSIDERED",
+        "CERTIFICATE_REVOKED",
+        "PRACTICE_PLANNED",
+        "PRACTICE_CONTINUED",
+        "PRACTICE_COMPLETED",
+        "CONSENT_GRANTED",
+        "CONSENT_WITHDRAWN",
+        "PLACEMENT_ESTABLISHED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
         "craft_revision",
+        "course",
+        "job_role",
+        "mentorship",
         "learning_evidence",
+        "attendance_record",
         "competency_review",
+        "certificate",
+        "practice_pursuit",
+        "consent_grant",
         "placement_record"
       ]
     },
@@ -45,12 +69,509 @@
     },
     "version": {
       "type": "integer",
-      "minimum": 1
+      "minimum": 1,
+      "description": "同一 aggregate_id 流内从 1 起严格连续递增。"
     },
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "payload": {
+      "type": "object",
+      "description": "事件业务字段，结构随 event_type 而定，见 $defs 与条件约束。"
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "$defs": {
+    "craft_node": {
+      "type": "object",
+      "required": ["node_id", "name"],
+      "properties": {
+        "node_id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "requires_on_site_observation": { "type": "boolean" },
+        "critical": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "judgment": {
+      "type": "object",
+      "required": ["node_id", "conclusion"],
+      "properties": {
+        "node_id": { "type": "string", "minLength": 1 },
+        "conclusion": {
+          "type": "string",
+          "enum": ["competent", "developing", "not_yet"],
+          "description": "合格 / 培养中 / 尚未达标。出勤记录不得作为 competent 的依据。"
+        },
+        "based_on_evidence_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "additionalProperties": true
+    },
+    "material": {
+      "type": "object",
+      "required": ["category", "ref"],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "unpublished_recipe",
+            "personal_image",
+            "unused_innovation",
+            "ordinary_work"
+          ]
+        },
+        "ref": { "type": "string", "minLength": 1 },
+        "studio_id": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "event_type": { "const": "CRAFT_REGISTERED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "craft_revision" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "craft_name", "craft_nodes"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "craft_name": { "type": "string", "minLength": 1 },
+              "craft_nodes": { "type": "array", "items": { "$ref": "#/$defs/craft_node" } }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CRAFT_REVISED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "craft_revision" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "craft_name", "supersedes_revision_id", "craft_nodes"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "craft_name": { "type": "string", "minLength": 1 },
+              "supersedes_revision_id": { "type": "string", "minLength": 1 },
+              "craft_nodes": { "type": "array", "items": { "$ref": "#/$defs/craft_node" } },
+              "change_note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "COURSE_REGISTERED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "course" },
+          "payload": {
+            "type": "object",
+            "required": ["school_id", "course_name"],
+            "properties": {
+              "school_id": { "type": "string", "minLength": 1 },
+              "course_name": { "type": "string", "minLength": 1 },
+              "covers_nodes": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "COURSE_REVISED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "course" },
+          "payload": {
+            "type": "object",
+            "required": ["school_id", "course_name", "supersedes_course_id"],
+            "properties": {
+              "school_id": { "type": "string", "minLength": 1 },
+              "course_name": { "type": "string", "minLength": 1 },
+              "supersedes_course_id": { "type": "string", "minLength": 1 },
+              "covers_nodes": { "type": "array", "items": { "type": "string" } },
+              "change_note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "JOB_ROLE_DEFINED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "job_role" },
+          "payload": {
+            "type": "object",
+            "required": ["shop_id", "role_name", "required_nodes"],
+            "properties": {
+              "shop_id": { "type": "string", "minLength": 1 },
+              "role_name": { "type": "string", "minLength": 1 },
+              "required_nodes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["craft_revision_id", "node_id"],
+                  "properties": {
+                    "craft_revision_id": { "type": "string", "minLength": 1 },
+                    "node_id": { "type": "string", "minLength": 1 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "JOB_ROLE_CANCELLED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "job_role" },
+          "payload": {
+            "type": "object",
+            "required": ["shop_id", "cancelled_at"],
+            "properties": {
+              "shop_id": { "type": "string", "minLength": 1 },
+              "cancelled_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "MENTORSHIP_ASSIGNED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "mentorship" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "master_id", "apprentice_id", "started_at"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "master_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "started_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "MENTOR_WITHDRAWN" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "mentorship" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "master_id", "effective_at"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "master_id": { "type": "string", "minLength": 1 },
+              "effective_at": { "type": "string", "format": "date-time" },
+              "reason": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "EVIDENCE_SUBMITTED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "learning_evidence" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "apprentice_id", "kind", "craft_revision_id", "title", "produced_at"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "kind": {
+                "type": "string",
+                "enum": ["practice_work", "on_site_observation", "oral_knack", "coursework", "innovation"]
+              },
+              "craft_revision_id": { "type": "string", "minLength": 1 },
+              "node_ids": { "type": "array", "items": { "type": "string" } },
+              "title": { "type": "string", "minLength": 1 },
+              "produced_at": { "type": "string", "format": "date-time" },
+              "observer_ids": { "type": "array", "items": { "type": "string" } },
+              "course_id": { "type": "string" },
+              "innovation_adoption": {
+                "type": "string",
+                "enum": ["adopted", "not_adopted", "pending"]
+              },
+              "materials": { "type": "array", "items": { "$ref": "#/$defs/material" } }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "ATTENDANCE_LOGGED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "attendance_record" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "apprentice_id", "date", "present"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "date": { "type": "string", "format": "date" },
+              "present": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "REVIEW_SIGNED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "competency_review" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "apprentice_id", "stage", "reviewer_ids", "judgments"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "stage": { "type": "string", "minLength": 1 },
+              "reviewer_ids": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+              "judgments": { "type": "array", "items": { "$ref": "#/$defs/judgment" } }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "REVIEW_RECONSIDERED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "competency_review" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "apprentice_id", "prior_review_id", "stage", "reviewer_ids", "judgments"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "prior_review_id": { "type": "string", "minLength": 1, "description": "指向原评议事件的 aggregate_id；原判断保留不删改。" },
+              "stage": { "type": "string", "minLength": 1 },
+              "reviewer_ids": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+              "judgments": { "type": "array", "items": { "$ref": "#/$defs/judgment" } },
+              "reconsideration_note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CERTIFICATE_ISSUED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "certificate" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "apprentice_id", "title", "review_ids", "issued_at"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "review_ids": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+              "issued_at": { "type": "string", "format": "date-time" },
+              "craft_revision_id": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CERTIFICATE_REVOKED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "certificate" },
+          "payload": {
+            "type": "object",
+            "required": ["reason", "revoked_at"],
+            "properties": {
+              "reason": { "type": "string", "minLength": 1 },
+              "revoked_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "PRACTICE_PLANNED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "practice_pursuit" },
+          "payload": {
+            "type": "object",
+            "required": [
+              "studio_id",
+              "apprentice_id",
+              "craft_revision_id",
+              "node_id",
+              "responsible_person_id",
+              "source",
+              "source_ref",
+              "planned_at"
+            ],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "craft_revision_id": { "type": "string", "minLength": 1 },
+              "node_id": { "type": "string", "minLength": 1 },
+              "responsible_person_id": { "type": "string", "minLength": 1 },
+              "source": { "type": "string", "enum": ["mentorship", "course", "placement"] },
+              "source_ref": { "type": "string", "minLength": 1 },
+              "planned_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "PRACTICE_CONTINUED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "practice_pursuit" },
+          "payload": {
+            "type": "object",
+            "required": [
+              "studio_id",
+              "apprentice_id",
+              "craft_revision_id",
+              "node_id",
+              "predecessor_practice_id",
+              "trigger_event_id",
+              "new_responsible_person_id",
+              "continued_at"
+            ],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "craft_revision_id": { "type": "string", "minLength": 1 },
+              "node_id": { "type": "string", "minLength": 1 },
+              "predecessor_practice_id": { "type": "string", "minLength": 1 },
+              "trigger_event_id": {
+                "type": "string",
+                "minLength": 1,
+                "description": "触发接续的事件 id：师傅退出 / 课程调整 / 门店岗位取消。"
+              },
+              "new_responsible_person_id": { "type": "string", "minLength": 1 },
+              "continued_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "PRACTICE_COMPLETED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "practice_pursuit" },
+          "payload": {
+            "type": "object",
+            "required": ["completed_at", "evidence_id"],
+            "properties": {
+              "completed_at": { "type": "string", "format": "date-time" },
+              "evidence_id": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CONSENT_GRANTED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "consent_grant" },
+          "payload": {
+            "type": "object",
+            "required": ["subject_id", "materials", "purposes", "scope", "granted_at"],
+            "properties": {
+              "subject_id": { "type": "string", "minLength": 1 },
+              "materials": { "type": "array", "items": { "$ref": "#/$defs/material" } },
+              "purposes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "employment_verification",
+                    "cross_studio_display",
+                    "bureau_statistics",
+                    "public_exhibition"
+                  ]
+                }
+              },
+              "scope": { "type": "string", "enum": ["same_studio", "cross_studio"] },
+              "granted_at": { "type": "string", "format": "date-time" },
+              "expires_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CONSENT_WITHDRAWN" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "consent_grant" },
+          "payload": {
+            "type": "object",
+            "required": ["withdrawn_at"],
+            "properties": {
+              "withdrawn_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "PLACEMENT_ESTABLISHED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "placement_record" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "apprentice_id", "shop_id", "placed_at"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "shop_id": { "type": "string", "minLength": 1 },
+              "placed_at": { "type": "string", "format": "date-time" },
+              "role_id": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "PLACEMENT_TRANSFERRED" } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "placement_record" },
+          "payload": {
+            "type": "object",
+            "required": ["studio_id", "apprentice_id", "to_shop_id", "transferred_at"],
+            "properties": {
+              "studio_id": { "type": "string", "minLength": 1 },
+              "apprentice_id": { "type": "string", "minLength": 1 },
+              "to_shop_id": { "type": "string", "minLength": 1 },
+              "transferred_at": { "type": "string", "format": "date-time" },
+              "role_id": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

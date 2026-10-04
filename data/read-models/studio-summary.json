@@ -1,0 +1,34 @@
+{
+  "studio_id": "studio-chenji",
+  "apprentices_observed": 2,
+  "evidence_by_kind": {
+    "oral_knack": 1,
+    "coursework": 1,
+    "on_site_observation": 2,
+    "practice_work": 2,
+    "innovation": 1
+  },
+  "stage_reviews": 4,
+  "reconsiderations_appended": 1,
+  "judgment_counts": {
+    "competent": 6,
+    "developing": 1,
+    "not_yet": 0
+  },
+  "valid_certificates": 2,
+  "revoked_certificates": 0,
+  "attendance_days_total": 2,
+  "placements": {
+    "established": 2,
+    "transferred": 0,
+    "active_placement_links": 2
+  },
+  "open_practices": 0,
+  "practices_awaiting_successor": 0,
+  "governance": [
+    "仅提供工作室级聚合，不产出个人出勤/打卡排名",
+    "出勤天数单独列示，不并入合格数与能力结论",
+    "原评议与后继复核意见同时计数，后继意见不抹去原判断",
+    "未公开配方、个人影像、未被采用创意的内容不在本视图展开"
+  ]
+}

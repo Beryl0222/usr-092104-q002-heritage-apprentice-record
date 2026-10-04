@@ -1,0 +1,23 @@
+{
+  "role_id": "role-shaomai-chef",
+  "role_name": "烧麦师傅",
+  "shop_id": "shop-deyuan",
+  "cancelled": false,
+  "cancelled_at": null,
+  "requirements": [
+    {
+      "craft_revision_id": "craft-shaomai-v2",
+      "node_id": "node-dough",
+      "node_name": "和面醒面",
+      "critical": false,
+      "requires_on_site_observation": false
+    },
+    {
+      "craft_revision_id": "craft-shaomai-v2",
+      "node_id": "node-wrapper-24",
+      "node_name": "擀皮包制·二十四道褶（按封口褶计数）",
+      "critical": true,
+      "requires_on_site_observation": true
+    }
+  ]
+}
