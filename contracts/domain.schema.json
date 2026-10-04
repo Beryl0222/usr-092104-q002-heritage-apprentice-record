@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "非遗师承能力履历领域事件",
+  "title": "非遗师承能力履历领域事件信封（兼容 v0.1，v0.2 扩展）",
   "type": "object",
   "required": [
     "event_id",
@@ -16,23 +16,46 @@
       "type": "string",
       "minLength": 1
     },
+    "event_type_display": {
+      "type": "string",
+      "minLength": 1,
+      "description": "稳定中文事件名。v0.2 起新事件必填；v0.1 历史事件不强制。"
+    },
     "event_type": {
       "type": "string",
+      "description": "字符串代码只增不改，是接入边界。",
       "enum": [
         "CRAFT_REGISTERED",
         "EVIDENCE_SUBMITTED",
         "REVIEW_SIGNED",
         "CERTIFICATE_ISSUED",
-        "PLACEMENT_TRANSFERRED"
+        "PLACEMENT_TRANSFERRED",
+        "STUDIO_REGISTERED",
+        "MASTER_DEPARTED",
+        "COURSE_REVISED",
+        "EVIDENCE_AMENDED",
+        "CERTIFICATE_REVOKED",
+        "CERTIFICATE_REISSUED",
+        "PRACTICE_ASSIGNED",
+        "RESPONSIBILITY_REASSIGNED",
+        "PRACTICE_FULFILLED",
+        "CONSENT_GRANTED",
+        "CONSENT_WITHDRAWN"
       ]
     },
     "aggregate_type": {
       "type": "string",
+      "description": "字符串代码只增不改，是接入边界。",
       "enum": [
         "craft_revision",
         "learning_evidence",
         "competency_review",
-        "placement_record"
+        "placement_record",
+        "studio_profile",
+        "course_offering",
+        "certificate_grant",
+        "practice_commitment",
+        "consent_grant"
       ]
     },
     "aggregate_id": {
@@ -45,11 +68,16 @@
     },
     "version": {
       "type": "integer",
-      "minimum": 1
+      "minimum": 1,
+      "description": "该聚合实例上的事件序号，从 1 起连续递增。"
     },
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "body": {
+      "type": "object",
+      "description": "事件负载，字段约定见 contracts/domain.md。"
     }
   },
   "additionalProperties": true

@@ -1,0 +1,696 @@
+{
+  "scenario": "惠民门烧麦铺 师承能力履历联调样例",
+  "description": "覆盖技艺修订、口授/课程/创意区分、现场目击与出勤分界、复核后继意见、证书独立有效、师傅退出与岗位取消接续、按用途授权与主管视图。",
+  "participants": {
+    "studio": "studio-huimin",
+    "masters": ["mstr-chen（陈师傅，后退出）", "mstr-zhou（周师傅，接续责任人）"],
+    "learners": ["lrnr-aruna（阿茹娜）", "lrnr-batu（巴图，仅有出勤）", "lrnr-chenxi（辰曦）"]
+  },
+  "events": [
+    {
+      "event_id": "ev-001",
+      "event_type": "STUDIO_REGISTERED",
+      "event_type_display": "工作室登记",
+      "aggregate_type": "studio_profile",
+      "aggregate_id": "studio-huimin",
+      "occurred_at": "2026-03-12T09:00:00+08:00",
+      "version": 1,
+      "summary": "惠民门烧麦铺完成街区非遗人才平台登记",
+      "body": { "studio_id": "studio-huimin", "studio_name": "惠民门烧麦铺" }
+    },
+    {
+      "event_id": "ev-002",
+      "event_type": "CRAFT_REGISTERED",
+      "event_type_display": "技艺版本登记",
+      "aggregate_type": "craft_revision",
+      "aggregate_id": "craft-shaomai-wrapper@1",
+      "occurred_at": "2026-01-10T09:00:00+08:00",
+      "version": 1,
+      "summary": "烧麦皮制作工序第1版登记",
+      "body": {
+        "craft_code": "shaomai-wrapper",
+        "craft_name": "烧麦皮制作",
+        "revision_no": 1,
+        "skill_codes": ["shaomai-wrapper-24pleats", "dough-thickness-control"],
+        "studio_id": "studio-huimin"
+      }
+    },
+    {
+      "event_id": "ev-003",
+      "event_type": "CRAFT_REGISTERED",
+      "event_type_display": "技艺版本登记",
+      "aggregate_type": "craft_revision",
+      "aggregate_id": "craft-shaomai-wrapper@2",
+      "occurred_at": "2026-03-01T09:00:00+08:00",
+      "version": 1,
+      "summary": "烧麦皮制作工序第2版登记，细化醒面时长",
+      "body": {
+        "craft_code": "shaomai-wrapper",
+        "craft_name": "烧麦皮制作",
+        "revision_no": 2,
+        "skill_codes": ["shaomai-wrapper-24pleats", "dough-thickness-control"],
+        "supersedes_revision_id": "craft-shaomai-wrapper@1",
+        "studio_id": "studio-huimin"
+      }
+    },
+    {
+      "event_id": "ev-004",
+      "event_type": "CRAFT_REGISTERED",
+      "event_type_display": "技艺版本登记",
+      "aggregate_type": "craft_revision",
+      "aggregate_id": "craft-shaomai-seal@1",
+      "occurred_at": "2026-03-05T09:00:00+08:00",
+      "version": 1,
+      "summary": "烧麦收口工序第1版登记",
+      "body": {
+        "craft_code": "shaomai-sealing",
+        "craft_name": "烧麦收口",
+        "revision_no": 1,
+        "skill_codes": ["shaomai-filling-sealing"],
+        "studio_id": "studio-huimin"
+      }
+    },
+    {
+      "event_id": "ev-005",
+      "event_type": "COURSE_REVISED",
+      "event_type_display": "课程开设修订",
+      "aggregate_type": "course_offering",
+      "aggregate_id": "crs-shaomai-2026",
+      "occurred_at": "2026-03-10T09:00:00+08:00",
+      "version": 1,
+      "summary": "2026 年度烧麦基础课程开设（第1批）",
+      "body": {
+        "course_code": "shaomai-basic",
+        "course_name": "烧麦基础",
+        "revision_no": 1,
+        "studio_id": "studio-huimin",
+        "skill_codes": ["shaomai-wrapper-24pleats", "shaomai-filling-sealing"],
+        "instructor_ids": ["mstr-chen"],
+        "status": "active"
+      }
+    },
+    {
+      "event_id": "ev-006",
+      "event_type": "COURSE_REVISED",
+      "event_type_display": "课程开设修订",
+      "aggregate_type": "course_offering",
+      "aggregate_id": "crs-shaomai-2026",
+      "occurred_at": "2026-05-02T09:00:00+08:00",
+      "version": 2,
+      "summary": "课程第2批：增补周师傅带教，课时结构调整（不溯及已修成果）",
+      "body": {
+        "revision_no": 2,
+        "studio_id": "studio-huimin",
+        "skill_codes": ["shaomai-wrapper-24pleats", "shaomai-filling-sealing"],
+        "instructor_ids": ["mstr-chen", "mstr-zhou"],
+        "supersedes_offering_id": "crs-shaomai-2026",
+        "status": "active"
+      }
+    },
+    {
+      "event_id": "ev-010",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-batu-att-01",
+      "occurred_at": "2026-04-02T18:00:00+08:00",
+      "version": 1,
+      "summary": "巴图4月2日出勤签到",
+      "body": {
+        "learner_id": "lrnr-batu",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "attendance_record",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@2",
+        "source_classification": "standard_practice",
+        "attendance_id_ref": "att-2026-0402-batu"
+      }
+    },
+    {
+      "event_id": "ev-011",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-att-01",
+      "occurred_at": "2026-04-10T18:00:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜4月10日出勤签到",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "attendance_record",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@2",
+        "source_classification": "standard_practice",
+        "attendance_id_ref": "att-2026-0410-aruna"
+      }
+    },
+    {
+      "event_id": "ev-012",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-art-01",
+      "occurred_at": "2026-04-15T17:00:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜提交烧麦皮练习作品一批（学校课程成果）",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "practice_artifact",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@2",
+        "course_offering_id": "crs-shaomai-2026",
+        "source_classification": "school_course",
+        "artifact_refs": ["doc/practice-sheet-20260415.jpg"],
+        "quantified_result": { "batch_size": 30, "qualified": 20 }
+      }
+    },
+    {
+      "event_id": "ev-013",
+      "event_type": "EVIDENCE_AMENDED",
+      "event_type_display": "证据勘误补充",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-art-01",
+      "occurred_at": "2026-04-16T10:00:00+08:00",
+      "version": 2,
+      "summary": "练习作品批次号勘误（原始记录保留）",
+      "body": {
+        "evidence_id": "evd-aruna-art-01",
+        "note": "批次标签由 B-041 更正为 B-045",
+        "corrections": { "batch_label": "B-045" }
+      }
+    },
+    {
+      "event_id": "ev-014",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-secret-01",
+      "occurred_at": "2026-04-20T16:00:00+08:00",
+      "version": 1,
+      "summary": "陈师傅口授醒面手感诀窍，阿茹娜当面操作，现场录音含未公开配方",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "on_site_observation",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@2",
+        "source_classification": "master_oral_secret",
+        "observer_ids": ["mstr-chen"],
+        "witness_role": "master",
+        "artifact_refs": ["media/audio-oral-tip-20260420.mp3"],
+        "sensitive_tags": ["unpublished_recipe"]
+      }
+    },
+    {
+      "event_id": "ev-015",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-inno-01",
+      "occurred_at": "2026-05-10T17:30:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜提出木卡板分褶法（创意待评审）",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "practice_artifact",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@2",
+        "source_classification": "learner_innovation",
+        "artifact_refs": ["doc/innovation-mu-board-draft.pdf"],
+        "innovation": { "status": "proposed", "note": "木卡板分褶法（草案）" }
+      }
+    },
+    {
+      "event_id": "ev-016",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-obs-0518",
+      "occurred_at": "2026-05-18T10:20:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜在陈师傅注视下独立完成二十四道褶，20张中18张达标",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "on_site_observation",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@2",
+        "observer_ids": ["mstr-chen"],
+        "witness_role": "master",
+        "artifact_refs": ["media/video-20260518-03.mp4"],
+        "sensitive_tags": ["personal_image"],
+        "quantified_result": { "batch_size": 20, "qualified": 18 },
+        "attendance_id_ref": "att-2026-0518-aruna"
+      }
+    },
+    {
+      "event_id": "ev-017",
+      "event_type": "REVIEW_SIGNED",
+      "event_type_display": "能力评议签署",
+      "aggregate_type": "competency_review",
+      "aggregate_id": "rvw-aruna-24p-1",
+      "occurred_at": "2026-05-20T15:00:00+08:00",
+      "version": 1,
+      "summary": "阶段评议：二十四道褶有条件通过，厚薄控制仍需练习",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@2",
+        "decision": "conditional",
+        "gap_skills": ["dough-thickness-control"],
+        "reviewer_ids": ["mstr-chen"],
+        "basis_evidence_ids": ["evd-aruna-obs-0518"],
+        "note": "褶数成型稳定，边沿厚薄不均"
+      }
+    },
+    {
+      "event_id": "ev-018",
+      "event_type": "REVIEW_SIGNED",
+      "event_type_display": "能力评议签署",
+      "aggregate_type": "competency_review",
+      "aggregate_id": "rvw-batu-seal-1",
+      "occurred_at": "2026-05-25T15:00:00+08:00",
+      "version": 1,
+      "summary": "阶段评议：巴图收口有条件通过，二十四道褶尚无现场记录",
+      "body": {
+        "learner_id": "lrnr-batu",
+        "studio_id": "studio-huimin",
+        "skill_code": "shaomai-filling-sealing",
+        "craft_revision_id": "craft-shaomai-seal@1",
+        "decision": "conditional",
+        "gap_skills": ["shaomai-wrapper-24pleats"],
+        "reviewer_ids": ["mstr-chen"],
+        "basis_evidence_ids": [],
+        "note": "仅见出勤，关键褶制工序无人现场目击"
+      }
+    },
+    {
+      "event_id": "ev-019",
+      "event_type": "CRAFT_REGISTERED",
+      "event_type_display": "技艺版本登记",
+      "aggregate_type": "craft_revision",
+      "aggregate_id": "craft-shaomai-wrapper@3",
+      "occurred_at": "2026-06-15T09:00:00+08:00",
+      "version": 1,
+      "summary": "烧麦皮制作工序第3版：采纳阿茹娜木卡板分褶法",
+      "body": {
+        "craft_code": "shaomai-wrapper",
+        "craft_name": "烧麦皮制作",
+        "revision_no": 3,
+        "skill_codes": ["shaomai-wrapper-24pleats", "dough-thickness-control"],
+        "supersedes_revision_id": "craft-shaomai-wrapper@2",
+        "studio_id": "studio-huimin"
+      }
+    },
+    {
+      "event_id": "ev-020",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-inno-02",
+      "occurred_at": "2026-06-16T14:00:00+08:00",
+      "version": 1,
+      "summary": "木卡板分褶法经评审被第3版工序采纳",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "practice_artifact",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@3",
+        "source_classification": "learner_innovation",
+        "artifact_refs": ["doc/innovation-mu-board-adopted.pdf"],
+        "innovation": {
+          "status": "adopted",
+          "adopted_in_craft_revision_id": "craft-shaomai-wrapper@3",
+          "note": "木卡板分褶法采纳为第3版标准辅具做法"
+        }
+      }
+    },
+    {
+      "event_id": "ev-021",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-chenxi-obs-01",
+      "occurred_at": "2026-06-10T11:00:00+08:00",
+      "version": 1,
+      "summary": "辰曦在陈师傅注视下完成烧麦收口操作",
+      "body": {
+        "learner_id": "lrnr-chenxi",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "on_site_observation",
+        "skill_code": "shaomai-filling-sealing",
+        "craft_revision_id": "craft-shaomai-seal@1",
+        "observer_ids": ["mstr-chen"],
+        "witness_role": "master",
+        "quantified_result": { "batch_size": 16, "qualified": 15 }
+      }
+    },
+    {
+      "event_id": "ev-022",
+      "event_type": "REVIEW_SIGNED",
+      "event_type_display": "能力评议签署",
+      "aggregate_type": "competency_review",
+      "aggregate_id": "rvw-chenxi-seal-1",
+      "occurred_at": "2026-06-12T15:00:00+08:00",
+      "version": 1,
+      "summary": "辰曦收口工序评议合格",
+      "body": {
+        "learner_id": "lrnr-chenxi",
+        "studio_id": "studio-huimin",
+        "skill_code": "shaomai-filling-sealing",
+        "craft_revision_id": "craft-shaomai-seal@1",
+        "decision": "pass",
+        "reviewer_ids": ["mstr-chen"],
+        "basis_evidence_ids": ["evd-chenxi-obs-01"]
+      }
+    },
+    {
+      "event_id": "ev-023",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-obs-0618",
+      "occurred_at": "2026-06-18T10:00:00+08:00",
+      "version": 1,
+      "summary": "按第3版工序阶段考核：陈师傅、周师傅共同现场查看阿茹娜二十四道褶",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "stage_review",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@3",
+        "observer_ids": ["mstr-chen", "mstr-zhou"],
+        "witness_role": "master",
+        "quantified_result": { "batch_size": 24, "qualified": 24 }
+      }
+    },
+    {
+      "event_id": "ev-024",
+      "event_type": "REVIEW_SIGNED",
+      "event_type_display": "能力评议签署",
+      "aggregate_type": "competency_review",
+      "aggregate_id": "rvw-aruna-24p-2",
+      "occurred_at": "2026-06-20T15:00:00+08:00",
+      "version": 1,
+      "summary": "复核：二十四道褶改判合格（原5月有条件评议保留不抹除）",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "skill_code": "shaomai-wrapper-24pleats",
+        "craft_revision_id": "craft-shaomai-wrapper@3",
+        "decision": "pass",
+        "reviewer_ids": ["mstr-chen", "mstr-zhou"],
+        "basis_evidence_ids": ["evd-aruna-obs-0518", "evd-aruna-obs-0618"],
+        "replaces_review_id": "rvw-aruna-24p-1",
+        "note": "厚薄控制达标，木卡板做法已纳入第3版"
+      }
+    },
+    {
+      "event_id": "ev-025",
+      "event_type": "EVIDENCE_SUBMITTED",
+      "event_type_display": "学习证据提交",
+      "aggregate_type": "learning_evidence",
+      "aggregate_id": "evd-aruna-seal-obs",
+      "occurred_at": "2026-06-19T11:00:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜在周师傅注视下完成收口，24只全部不露馅",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "evidence_kind": "on_site_observation",
+        "skill_code": "shaomai-filling-sealing",
+        "craft_revision_id": "craft-shaomai-seal@1",
+        "observer_ids": ["mstr-zhou"],
+        "witness_role": "master",
+        "quantified_result": { "batch_size": 24, "qualified": 24 }
+      }
+    },
+    {
+      "event_id": "ev-026",
+      "event_type": "REVIEW_SIGNED",
+      "event_type_display": "能力评议签署",
+      "aggregate_type": "competency_review",
+      "aggregate_id": "rvw-aruna-seal-1",
+      "occurred_at": "2026-06-21T15:00:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜收口工序评议合格",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "skill_code": "shaomai-filling-sealing",
+        "craft_revision_id": "craft-shaomai-seal@1",
+        "decision": "pass",
+        "reviewer_ids": ["mstr-zhou"],
+        "basis_evidence_ids": ["evd-aruna-seal-obs"]
+      }
+    },
+    {
+      "event_id": "ev-027",
+      "event_type": "CERTIFICATE_ISSUED",
+      "event_type_display": "证书签发",
+      "aggregate_type": "certificate_grant",
+      "aggregate_id": "cert-aruna-001",
+      "occurred_at": "2026-06-22T16:00:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜获发烧麦制作能力证书（二十四道褶+收口）",
+      "body": {
+        "certificate_code": "HM-CERT-2026-007",
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "skill_codes": ["shaomai-wrapper-24pleats", "shaomai-filling-sealing"],
+        "issued_by_master_id": "mstr-chen",
+        "valid_from": "2026-06-22T16:00:00+08:00",
+        "valid_until": "2029-06-21T23:59:59+08:00"
+      }
+    },
+    {
+      "event_id": "ev-028",
+      "event_type": "CERTIFICATE_ISSUED",
+      "event_type_display": "证书签发",
+      "aggregate_type": "certificate_grant",
+      "aggregate_id": "cert-chenxi-001",
+      "occurred_at": "2026-07-05T16:00:00+08:00",
+      "version": 1,
+      "summary": "辰曦获发烧麦收口能力证书（签发师傅后于7月退出）",
+      "body": {
+        "certificate_code": "HM-CERT-2026-009",
+        "learner_id": "lrnr-chenxi",
+        "studio_id": "studio-huimin",
+        "skill_codes": ["shaomai-filling-sealing"],
+        "issued_by_master_id": "mstr-chen",
+        "valid_from": "2026-07-05T16:00:00+08:00",
+        "valid_until": "2029-07-04T23:59:59+08:00"
+      }
+    },
+    {
+      "event_id": "ev-029",
+      "event_type": "CONSENT_GRANTED",
+      "event_type_display": "材料用途授权",
+      "aggregate_type": "consent_grant",
+      "aggregate_id": "cst-aruna-emp-01",
+      "occurred_at": "2026-06-25T10:00:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜授权企业录用核验使用其证据链（含未公开配方，不含个人影像外发）",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "purposes": ["employment_verification"],
+        "material_scope": [
+          "evd-aruna-obs-0518",
+          "evd-aruna-obs-0618",
+          "evd-aruna-secret-01",
+          "evd-aruna-seal-obs",
+          "evd-aruna-art-01"
+        ],
+        "sensitive_materials": ["unpublished_recipe"],
+        "valid_until": "2027-06-25T23:59:59+08:00"
+      }
+    },
+    {
+      "event_id": "ev-030",
+      "event_type": "CONSENT_GRANTED",
+      "event_type_display": "材料用途授权",
+      "aggregate_type": "consent_grant",
+      "aggregate_id": "cst-aruna-show-01",
+      "occurred_at": "2026-06-25T10:05:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜授权跨工作室展示被采纳创意与课程作品（仅必要材料）",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "purposes": ["cross_studio_showcase"],
+        "material_scope": ["evd-aruna-inno-02", "evd-aruna-art-01"],
+        "sensitive_materials": [],
+        "valid_until": "2027-06-25T23:59:59+08:00"
+      }
+    },
+    {
+      "event_id": "ev-031",
+      "event_type": "PLACEMENT_TRANSFERRED",
+      "event_type_display": "就业岗位转接",
+      "aggregate_type": "placement_record",
+      "aggregate_id": "plc-old-store",
+      "occurred_at": "2026-06-26T09:00:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜对口老门店岗位（要求二十四道褶与收口）",
+      "body": {
+        "placement_id": "plc-old-store",
+        "studio_id": "studio-huimin",
+        "learner_id": "lrnr-aruna",
+        "required_skills": ["shaomai-wrapper-24pleats", "shaomai-filling-sealing"],
+        "status": "active"
+      }
+    },
+    {
+      "event_id": "ev-032",
+      "event_type": "PRACTICE_ASSIGNED",
+      "event_type_display": "实践带教承诺确立",
+      "aggregate_type": "practice_commitment",
+      "aggregate_id": "com-chenxi-01",
+      "occurred_at": "2026-07-01T09:00:00+08:00",
+      "version": 1,
+      "summary": "辰曦进阶实践由陈师傅负责带教",
+      "body": {
+        "learner_id": "lrnr-chenxi",
+        "studio_id": "studio-huimin",
+        "skill_codes": ["shaomai-wrapper-24pleats"],
+        "responsible_party_id": "mstr-chen",
+        "responsible_party_type": "master",
+        "due_by": "2026-09-30T23:59:59+08:00"
+      }
+    },
+    {
+      "event_id": "ev-033",
+      "event_type": "PRACTICE_ASSIGNED",
+      "event_type_display": "实践带教承诺确立",
+      "aggregate_type": "practice_commitment",
+      "aggregate_id": "com-aruna-01",
+      "occurred_at": "2026-07-01T09:10:00+08:00",
+      "version": 1,
+      "summary": "阿茹娜入职前顶岗实践由老门店承接",
+      "body": {
+        "learner_id": "lrnr-aruna",
+        "studio_id": "studio-huimin",
+        "skill_codes": ["shaomai-wrapper-24pleats", "shaomai-filling-sealing"],
+        "responsible_party_id": "plc-old-store",
+        "responsible_party_type": "placement",
+        "due_by": "2026-08-31T23:59:59+08:00"
+      }
+    },
+    {
+      "event_id": "ev-034",
+      "event_type": "PLACEMENT_TRANSFERRED",
+      "event_type_display": "就业岗位转接",
+      "aggregate_type": "placement_record",
+      "aggregate_id": "plc-east-store",
+      "occurred_at": "2026-07-15T09:00:00+08:00",
+      "version": 1,
+      "summary": "巴图入职东街门店（岗位同样要求两项关键能力）",
+      "body": {
+        "placement_id": "plc-east-store",
+        "studio_id": "studio-huimin",
+        "learner_id": "lrnr-batu",
+        "required_skills": ["shaomai-wrapper-24pleats", "shaomai-filling-sealing"],
+        "status": "active"
+      }
+    },
+    {
+      "event_id": "ev-035",
+      "event_type": "MASTER_DEPARTED",
+      "event_type_display": "师傅退出登记",
+      "aggregate_type": "studio_profile",
+      "aggregate_id": "studio-huimin",
+      "occurred_at": "2026-07-20T17:00:00+08:00",
+      "version": 2,
+      "summary": "陈师傅因退休退出带教",
+      "body": {
+        "studio_id": "studio-huimin",
+        "master_id": "mstr-chen",
+        "master_name": "陈师傅",
+        "reason": "退休"
+      }
+    },
+    {
+      "event_id": "ev-036",
+      "event_type": "RESPONSIBILITY_REASSIGNED",
+      "event_type_display": "接续责任改派",
+      "aggregate_type": "practice_commitment",
+      "aggregate_id": "com-chenxi-01",
+      "occurred_at": "2026-07-20T17:30:00+08:00",
+      "version": 2,
+      "summary": "陈师傅退出当日：辰曦的未完成实践改派周师傅接续",
+      "body": {
+        "studio_id": "studio-huimin",
+        "reassigned_from": "mstr-chen",
+        "reassigned_to": "mstr-zhou",
+        "reassigned_to_type": "master",
+        "reason": "原责任人陈师傅退休退出，当日完成接续"
+      }
+    },
+    {
+      "event_id": "ev-037",
+      "event_type": "PLACEMENT_TRANSFERRED",
+      "event_type_display": "就业岗位转接",
+      "aggregate_type": "placement_record",
+      "aggregate_id": "plc-old-store",
+      "occurred_at": "2026-08-01T09:00:00+08:00",
+      "version": 2,
+      "summary": "老门店撤店，岗位取消，转接至蒙古路店",
+      "body": {
+        "placement_id": "plc-old-store",
+        "studio_id": "studio-huimin",
+        "status": "withdrawn",
+        "reason": "门店撤店，岗位取消",
+        "transferred_to_placement_id": "plc-menggu-store"
+      }
+    },
+    {
+      "event_id": "ev-038",
+      "event_type": "PLACEMENT_TRANSFERRED",
+      "event_type_display": "就业岗位转接",
+      "aggregate_type": "placement_record",
+      "aggregate_id": "plc-menggu-store",
+      "occurred_at": "2026-08-01T09:05:00+08:00",
+      "version": 1,
+      "summary": "蒙古路店承接阿茹娜就业岗位",
+      "body": {
+        "placement_id": "plc-menggu-store",
+        "studio_id": "studio-huimin",
+        "learner_id": "lrnr-aruna",
+        "required_skills": ["shaomai-wrapper-24pleats", "shaomai-filling-sealing"],
+        "status": "active"
+      }
+    },
+    {
+      "event_id": "ev-039",
+      "event_type": "RESPONSIBILITY_REASSIGNED",
+      "event_type_display": "接续责任改派",
+      "aggregate_type": "practice_commitment",
+      "aggregate_id": "com-aruna-01",
+      "occurred_at": "2026-08-01T09:30:00+08:00",
+      "version": 2,
+      "summary": "老门店岗位取消当日：阿茹娜未完成实践改派蒙古路店承接",
+      "body": {
+        "studio_id": "studio-huimin",
+        "reassigned_from": "plc-old-store",
+        "reassigned_to": "plc-menggu-store",
+        "reassigned_to_type": "placement",
+        "reason": "承接岗位的门店撤店，当日改派至新门店"
+      }
+    },
+    {
+      "event_id": "ev-040",
+      "event_type": "PRACTICE_FULFILLED",
+      "event_type_display": "实践承诺履行",
+      "aggregate_type": "practice_commitment",
+      "aggregate_id": "com-chenxi-01",
+      "occurred_at": "2026-08-10T16:00:00+08:00",
+      "version": 3,
+      "summary": "辰曦在周师傅接续带教下完成进阶实践",
+      "body": { "note": "二十四道褶经周师傅现场复核，实践完成" }
+    }
+  ]
+}
